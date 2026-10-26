@@ -136,14 +136,12 @@ a { color: var(--water-deep); }
 .hoje-head .q { font-size: 22px; font-weight: 800; }
 .hoje-head .total { font-size: 44px; font-weight: 900; letter-spacing: -1px; line-height: 1.05; }
 .hoje-head .total small { font-size: 16px; color: var(--muted); font-weight: 700; margin-left: 6px; }
-.avatar-wrap { display: flex; justify-content: center; margin: 6px 0 10px; }
+.avatar-wrap { display: flex; justify-content: center; margin: 0 0 6px; }
 .ritmo { display: flex; align-items: center; gap: 10px; }
 .ritmo .bar { flex: 1; height: 10px; border-radius: 999px; background: var(--surface-2); overflow: hidden; position: relative; }
 .ritmo .bar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--water); border-radius: 999px; transition: width 0.4s ease; }
 .ritmo .bar > b { position: absolute; top: -3px; width: 2px; height: 16px; background: var(--accent); }
-.gole-area { position: fixed; left: 0; right: 0; bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 10px); display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; z-index: 15; }
-.gole-area > * { pointer-events: auto; }
-.screen.hoje { padding-bottom: 210px; }
+.gole-area { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 4px 0 18px; }
 .gole-btn {
   width: 120px; height: 120px; border-radius: 50%; border: 0; cursor: pointer; color: #fff; font-weight: 900; font-size: 22px;
   background: radial-gradient(circle at 35% 30%, var(--water-light), var(--water) 45%, var(--water-deep));

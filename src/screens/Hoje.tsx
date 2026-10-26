@@ -58,7 +58,19 @@ export function Hoje({ goGroup }: { goGroup: () => void }) {
         <div className="q">Qual seu gole hoje?</div>
         <div className="total">{liters(ml)}<small>{done} {done === 1 ? 'gole' : 'goles'} de {totalGoles}</small></div>
       </div>
-      <div className="avatar-wrap"><Avatar character={character} fill={pct} size={190} /></div>
+      <div className="avatar-wrap"><Avatar character={character} fill={pct} size={170} /></div>
+
+      <div className="gole-area">
+        <GoleButton onGole={() => addGole('gole')} />
+        <div className="gole-alts">
+          <button className="btn secondary small" onClick={() => { addGole('meia'); show('Meia garrafa registrada') }}>Meia garrafa</button>
+          <button className="btn secondary small" onClick={() => { addGole('garrafa'); show('Garrafa registrada') }}>Garrafa inteira</button>
+          {canUndo && <button className="btn ghost small" onClick={() => { if (undoLast()) show('Último gole desfeito') }}>Desfazer</button>}
+        </div>
+        {today.length > 0 && settings.showTimes && (
+          <div className="small muted">Último gole às {new Date(last!.ts).getHours()}:{String(new Date(last!.ts).getMinutes()).padStart(2, '0')} · {points} pts hoje</div>
+        )}
+      </div>
 
       <div className="card">
         <div className="ritmo">
@@ -92,17 +104,6 @@ export function Hoje({ goGroup }: { goGroup: () => void }) {
         <div className="small muted" style={{ marginTop: 6 }}><span className={`chip ${tip.evidencia === 'forte' ? 'good' : tip.evidencia === 'moderada' ? 'water' : ''}`}>{EVIDENCIA_LABEL[tip.evidencia]}</span> <a href={tip.fonte} target="_blank" rel="noreferrer">ver a fonte</a></div>
       </div>
 
-      <div className="gole-area">
-        <GoleButton onGole={() => addGole('gole')} />
-        <div className="gole-alts">
-          <button className="btn secondary small" onClick={() => { addGole('meia'); show('Meia garrafa registrada') }}>Meia garrafa</button>
-          <button className="btn secondary small" onClick={() => { addGole('garrafa'); show('Garrafa registrada') }}>Garrafa inteira</button>
-          {canUndo && <button className="btn ghost small" onClick={() => { if (undoLast()) show('Último gole desfeito') }}>Desfazer</button>}
-        </div>
-        {today.length > 0 && settings.showTimes && (
-          <div className="small muted">Último gole às {new Date(last!.ts).getHours()}:{String(new Date(last!.ts).getMinutes()).padStart(2, '0')} · {points} pts hoje</div>
-        )}
-      </div>
       {toast && <div className="toast">{toast}</div>}
     </div>
   )

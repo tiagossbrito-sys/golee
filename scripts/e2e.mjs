@@ -24,7 +24,7 @@ await page.click('text=Começar')
 await page.waitForSelector('button.gole-btn')
 await page.screenshot({ path: `${out}/04-hoje.png`, fullPage: true })
 for (let i = 0; i < 4; i++) { await page.click('button.gole-btn'); await page.waitForTimeout(150); const ov = await page.$('.overlay'); if (ov) { await page.screenshot({ path: `${out}/05-super.png` }); await page.click('text=Continuar') } }
-await page.screenshot({ path: `${out}/06-hoje-4goles.png`, fullPage: true })
+await page.screenshot({ path: `${out}/06-hoje-4goles.png` })
 await page.click('text=Grupo')
 await page.waitForSelector('text=Gole do Grupo')
 await page.screenshot({ path: `${out}/07-grupo.png`, fullPage: true })
