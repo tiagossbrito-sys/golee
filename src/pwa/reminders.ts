@@ -18,7 +18,7 @@ async function notify(title: string, body: string) {
   try {
     const reg = await navigator.serviceWorker?.getRegistration()
     const opts: NotificationOptions & { actions?: { action: string; title: string }[] } = {
-      body, icon: '/icon-192.png', badge: '/icon-192.png', tag: 'golee-reminder',
+      body, icon: 'icon-192.png', badge: 'icon-192.png', tag: 'golee-reminder',
       actions: [{ action: 'gole', title: 'Gole' }],
     }
     if (reg) await reg.showNotification(title, opts)
