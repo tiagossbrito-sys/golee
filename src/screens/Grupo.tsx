@@ -3,10 +3,17 @@ import { useActiveGroup, useStore, useToday } from '../store/useStore'
 import { Avatar } from '../components/Avatar'
 import { botMlAt, dateKey, hash, liters, rankingScore } from '../game/rules'
 import type { Member } from '../game/types'
+import { GROUPS_ENABLED } from '../config'
+import { GrupoPreview } from './GrupoPreview'
 
 type Period = 'dia' | 'semana' | 'geral'
 
 export function Grupo() {
+  if (!GROUPS_ENABLED) return <GrupoPreview />
+  return <GrupoReal />
+}
+
+function GrupoReal() {
   const group = useActiveGroup()
   const groups = useStore((s) => s.groups)
   const setActiveGroup = useStore((s) => s.setActiveGroup)

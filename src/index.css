@@ -271,3 +271,8 @@ input[type='range']::-webkit-slider-runnable-track { height: 8px; border-radius:
 input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--water); border: 3px solid #fff; box-shadow: 0 1px 5px rgba(0,0,0,0.25); margin-top: -9px; }
 input[type='range']::-moz-range-track { height: 8px; border-radius: 999px; background: var(--line); }
 input[type='range']::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--water); border: 3px solid #fff; box-shadow: 0 1px 5px rgba(0,0,0,0.25); }
+
+/* Recursos "em breve": visíveis, opacos e sem interação */
+.option.soon, .option:disabled { opacity: 0.55; cursor: default; }
+.option b .chip { margin-left: 6px; vertical-align: middle; }
+.soon-block { opacity: 0.45; pointer-events: none; filter: saturate(0.7); }

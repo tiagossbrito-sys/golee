@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { useStore } from '../store/useStore'
 import { liters } from '../game/rules'
-import { tipFor, EVIDENCIA_LABEL } from '../game/tips'
+import { tipFor } from '../game/tips'
 
 export function Celebration() {
   const c = useStore((s) => s.celebration)
@@ -31,7 +31,6 @@ export function Celebration() {
           <div className="small" style={{ fontWeight: 800 }}>Sabia que?</div>
           <div>{tip.texto}</div>
           <div className="small muted" style={{ marginTop: 6 }}>
-            <span className={`chip ${tip.evidencia === 'forte' ? 'good' : tip.evidencia === 'moderada' ? 'water' : ''}`}>{EVIDENCIA_LABEL[tip.evidencia]}</span>{' '}
             <a href={tip.fonte} target="_blank" rel="noreferrer">ver a fonte</a>
           </div>
         </div>

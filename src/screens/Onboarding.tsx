@@ -3,6 +3,7 @@ import { useStore } from '../store/useStore'
 import type { Activity, Objective, Sex } from '../game/types'
 import { golesForGoal, suggestGoalMl } from '../game/rules'
 import { Avatar } from '../components/Avatar'
+import { GROUPS_ENABLED, SOON_LABEL } from '../config'
 
 export function Onboarding() {
   const complete = useStore((s) => s.completeOnboarding)
@@ -17,7 +18,7 @@ export function Onboarding() {
   const [awakeStart, setAwakeStart] = useState(8)
   const [awakeEnd, setAwakeEnd] = useState(20)
   const [goal, setGoal] = useState<number | null>(null)
-  const [choice, setChoice] = useState<'criar' | 'demo' | 'entrar' | 'depois'>(joinCodeFromUrl ? 'entrar' : 'criar')
+  const [choice, setChoice] = useState<'criar' | 'demo' | 'entrar' | 'depois'>(!GROUPS_ENABLED ? 'depois' : joinCodeFromUrl ? 'entrar' : 'criar')
   const [groupName, setGroupName] = useState('')
   const [code, setCode] = useState(joinCodeFromUrl)
 
@@ -88,13 +89,14 @@ export function Onboarding() {
       {step === 2 && (
         <>
           <h1 style={{ fontSize: 24, margin: '0 0 12px' }}>Com quem você joga?</h1>
+          {!GROUPS_ENABLED && <p className="muted small">Grupos, convites e ranking entre amigos chegam na próxima versão.</p>}
           <div className="avatar-wrap"><Avatar character="gota" fill={0.35} size={120} happy /></div>
-          <button className={`option${choice === 'criar' ? ' on' : ''}`} onClick={() => setChoice('criar')}><b>Criar meu grupo</b><span>Você recebe um código e um link para convidar amigos.</span></button>
-          {choice === 'criar' && <div className="field"><input value={groupName} onChange={(e) => setGroupName(e.target.value)} placeholder={`Turma de ${name.split(' ')[0] || 'amigos'}`} /></div>}
-          <button className={`option${choice === 'entrar' ? ' on' : ''}`} onClick={() => setChoice('entrar')}><b>Entrar com código</b><span>Alguém te mandou um link ou um código de 6 letras.</span></button>
-          {choice === 'entrar' && <div className="field"><input value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="ABCDEF" maxLength={6} /></div>}
-          <button className={`option${choice === 'demo' ? ' on' : ''}`} onClick={() => setChoice('demo')}><b>Testar com o grupo de demonstração</b><span>Quatro personagens simulados para você ver o ranking funcionando.</span></button>
-          <button className={`option${choice === 'depois' ? ' on' : ''}`} onClick={() => setChoice('depois')}><b>Sozinho por enquanto</b><span>Dá para entrar em um grupo depois, na aba Grupo.</span></button>
+          <button className={`option${choice === 'criar' ? ' on' : ''}${GROUPS_ENABLED ? '' : ' soon'}`} disabled={!GROUPS_ENABLED} onClick={() => setChoice('criar')}><b>Criar meu grupo {!GROUPS_ENABLED && <span className="chip warn">{SOON_LABEL}</span>}</b><span>Você recebe um código e um link para convidar amigos.</span></button>
+          {choice === 'criar' && GROUPS_ENABLED && <div className="field"><input value={groupName} onChange={(e) => setGroupName(e.target.value)} placeholder={`Turma de ${name.split(' ')[0] || 'amigos'}`} /></div>}
+          <button className={`option${choice === 'entrar' ? ' on' : ''}${GROUPS_ENABLED ? '' : ' soon'}`} disabled={!GROUPS_ENABLED} onClick={() => setChoice('entrar')}><b>Entrar com código {!GROUPS_ENABLED && <span className="chip warn">{SOON_LABEL}</span>}</b><span>Alguém te mandou um link ou um código de 6 letras.</span></button>
+          {choice === 'entrar' && GROUPS_ENABLED && <div className="field"><input value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="ABCDEF" maxLength={6} /></div>}
+          {GROUPS_ENABLED && <button className={`option${choice === 'demo' ? ' on' : ''}`} onClick={() => setChoice('demo')}><b>Testar com o grupo de demonstração</b><span>Quatro personagens simulados para você ver o ranking funcionando.</span></button>}
+          <button className={`option${choice === 'depois' ? ' on' : ''}`} onClick={() => setChoice('depois')}><b>{GROUPS_ENABLED ? 'Sozinho por enquanto' : 'Começar sozinho'}</b><span>{GROUPS_ENABLED ? 'Dá para entrar em um grupo depois, na aba Grupo.' : 'Os grupos com amigos chegam em breve. Seu progresso fica guardado.'}</span></button>
           <div className="spacer" />
           <div className="row">
             <button className="btn secondary" onClick={() => setStep(1)}>Voltar</button>

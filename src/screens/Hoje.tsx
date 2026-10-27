@@ -4,7 +4,8 @@ import { Avatar } from '../components/Avatar'
 import { GoleButton } from '../components/GoleButton'
 import { botMlAt, dateKey, expectedGolesNow, golesForGoal, liters, nextReminder, rankingScore, UNDO_MS } from '../game/rules'
 import { morningMessage, reminderMessage, rhythmLine } from '../game/messages'
-import { tipFor, EVIDENCIA_LABEL } from '../game/tips'
+import { tipFor } from '../game/tips'
+import { GROUPS_ENABLED } from '../config'
 
 export function Hoje({ goGroup }: { goGroup: () => void }) {
   const { today, ml, points, goalMl, pct } = useToday()
@@ -89,7 +90,7 @@ export function Hoje({ goGroup }: { goGroup: () => void }) {
         </div>
       </div>
 
-      {leader && (
+      {GROUPS_ENABLED && leader && (
         <button className="card row between" style={{ width: '100%', border: 0, textAlign: 'left', cursor: 'pointer' }} onClick={goGroup}>
           <div>
             <div className="small muted">Maior Gole do Dia · {group!.name}</div>
@@ -102,7 +103,7 @@ export function Hoje({ goGroup }: { goGroup: () => void }) {
       <div className="card flat">
         <div className="small" style={{ fontWeight: 800 }}>Sabia que?</div>
         <div>{tip.texto}</div>
-        <div className="small muted" style={{ marginTop: 6 }}><span className={`chip ${tip.evidencia === 'forte' ? 'good' : tip.evidencia === 'moderada' ? 'water' : ''}`}>{EVIDENCIA_LABEL[tip.evidencia]}</span> <a href={tip.fonte} target="_blank" rel="noreferrer">ver a fonte</a></div>
+        <div className="small muted" style={{ marginTop: 6 }}><a href={tip.fonte} target="_blank" rel="noreferrer">ver a fonte</a></div>
       </div>
 
       {toast && <div className="toast">{toast}</div>}
