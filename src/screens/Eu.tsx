@@ -47,7 +47,7 @@ export function Eu() {
           <input type="range" min={1500} max={4000} step={250} value={settings.goalMl} onChange={(e) => setSettings({ goalMl: +e.target.value })} />
           <button className="btn ghost small" onClick={() => setSettings({ goalMl: suggestGoalMl(profile) })}>Usar a sugerida ({(suggestGoalMl(profile) / 1000).toFixed(2).replace('.', ',')} L)</button>
         </div>
-        <div className="field"><label>Tamanho do copo</label><div className="seg">{[200, 250, 300, 500].map((v) => <button key={v} className={settings.glassMl === v ? 'on' : ''} onClick={() => setSettings({ glassMl: v })}>{v} ml</button>)}</div></div>
+        <div className="field"><label>Tamanho do copo (1 gole = 1 copo)</label><div className="seg">{[200, 250, 300, 500].map((v) => <button key={v} className={settings.glassMl === v ? 'on' : ''} onClick={() => setSettings({ glassMl: v })}>{v} ml</button>)}</div></div>
         <div className="field"><label>Garrafa (para "meia garrafa" e "garrafa inteira")</label><div className="seg">{[500, 750, 1000].map((v) => <button key={v} className={settings.bottleMl === v ? 'on' : ''} onClick={() => setSettings({ bottleMl: v })}>{v} ml</button>)}</div></div>
         <div className="field"><label>Acordado das {settings.awakeStart}h às {settings.awakeEnd}h</label>
           <div className="range-pair"><div><div className="cap">Acordo</div><input type="range" min={4} max={12} value={settings.awakeStart} onChange={(e) => setSettings({ awakeStart: +e.target.value })} aria-label="Hora de acordar" /></div><div><div className="cap">Durmo</div><input type="range" min={14} max={24} value={settings.awakeEnd} onChange={(e) => setSettings({ awakeEnd: +e.target.value })} aria-label="Hora de dormir" /></div></div>

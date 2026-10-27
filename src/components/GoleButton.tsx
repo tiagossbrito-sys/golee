@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-export function GoleButton({ onGole, label = 'Gole' }: { onGole: () => void; label?: string }) {
+export function GoleButton({ onGole, label = 'Gole', sub }: { onGole: () => void; label?: string; sub?: string }) {
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
   const [pop, setPop] = useState(false)
   return (
     <button
       className={`gole-btn${pop ? ' pop' : ''}`}
-      aria-label="Registrar um gole"
+      aria-label={`Registrar um gole: ${sub ?? "um copo"}`}
       onPointerDown={(e) => {
         const r = (e.currentTarget as HTMLButtonElement).getBoundingClientRect()
         const id = Date.now()
@@ -21,7 +21,8 @@ export function GoleButton({ onGole, label = 'Gole' }: { onGole: () => void; lab
       }}
     >
       {ripples.map((r) => <span key={r.id} className="ripple" style={{ left: r.x - 20, top: r.y - 20, width: 40, height: 40 }} />)}
-      {label}
+      <span className="gole-label">{label}</span>
+      {sub && <span className="gole-sub">{sub}</span>}
     </button>
   )
 }

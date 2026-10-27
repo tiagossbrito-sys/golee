@@ -57,14 +57,15 @@ export function Hoje({ goGroup }: { goGroup: () => void }) {
       <div className="hoje-head">
         <div className="q">Qual seu gole hoje?</div>
         <div className="total">{liters(ml)}<small>{done} {done === 1 ? 'gole' : 'goles'} de {totalGoles}</small></div>
+        <div className="small muted">1 gole = 1 copo de {settings.glassMl} ml</div>
       </div>
       <div className="avatar-wrap"><Avatar character={character} fill={pct} size={170} /></div>
 
       <div className="gole-area">
-        <GoleButton onGole={() => addGole('gole')} />
+        <GoleButton onGole={() => addGole('gole')} sub={`1 copo · ${settings.glassMl} ml`} />
         <div className="gole-alts">
-          <button className="btn secondary small" onClick={() => { addGole('meia'); show('Meia garrafa registrada') }}>Meia garrafa</button>
-          <button className="btn secondary small" onClick={() => { addGole('garrafa'); show('Garrafa registrada') }}>Garrafa inteira</button>
+          <button className="btn secondary small" onClick={() => { addGole('meia'); show(`Meia garrafa: ${Math.round((settings.bottleMl ?? 500) / 2)} ml`) }}>Meia garrafa · {Math.round((settings.bottleMl ?? 500) / 2)} ml</button>
+          <button className="btn secondary small" onClick={() => { addGole('garrafa'); show(`Garrafa: ${settings.bottleMl ?? 500} ml`) }}>Garrafa · {settings.bottleMl ?? 500} ml</button>
           {canUndo && <button className="btn ghost small" onClick={() => { if (undoLast()) show('Último gole desfeito') }}>Desfazer</button>}
         </div>
         {today.length > 0 && settings.showTimes && (

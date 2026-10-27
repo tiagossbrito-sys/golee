@@ -143,12 +143,15 @@ a { color: var(--water-deep); }
 .ritmo .bar > b { position: absolute; top: -3px; width: 2px; height: 16px; background: var(--accent); }
 .gole-area { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 4px 0 18px; }
 .gole-btn {
-  width: 120px; height: 120px; border-radius: 50%; border: 0; cursor: pointer; color: #fff; font-weight: 900; font-size: 22px;
+  width: 128px; height: 128px; border-radius: 50%; border: 0; cursor: pointer; color: #fff; font-weight: 900; font-size: 22px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
   background: radial-gradient(circle at 35% 30%, var(--water-light), var(--water) 45%, var(--water-deep));
   box-shadow: 0 12px 30px rgba(31, 128, 212, 0.45), inset 0 -6px 14px rgba(0,0,0,0.15);
   position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; user-select: none;
 }
 .gole-btn:active { transform: scale(0.95); }
+.gole-btn .gole-label { position: relative; line-height: 1; }
+.gole-btn .gole-sub { position: relative; font-size: 11px; font-weight: 700; opacity: 0.92; line-height: 1; }
 .gole-btn .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.45); transform: scale(0); animation: ripple 0.6s ease-out forwards; pointer-events: none; }
 @keyframes ripple { to { transform: scale(4); opacity: 0; } }
 .gole-btn.pop { animation: pop 0.35s ease; }
@@ -240,7 +243,8 @@ input[type='range'] { width: 100%; min-width: 0; flex: 1; accent-color: var(--wa
   .hoje-head .q { font-size: 19px; }
   .hoje-head .total { font-size: 36px; }
   .hoje-head .total small { font-size: 14px; display: block; margin: 2px 0 0; }
-  .gole-btn { width: 104px; height: 104px; font-size: 20px; }
+  .gole-btn { width: 112px; height: 112px; font-size: 20px; }
+  .gole-btn .gole-sub { font-size: 10px; }
   .gole-alts { flex-wrap: wrap; justify-content: center; }
   .seg button { font-size: 12px; padding: 8px 3px; }
   .btn { padding: 11px 12px; font-size: 15px; }

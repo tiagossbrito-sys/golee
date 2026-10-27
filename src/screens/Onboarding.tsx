@@ -68,7 +68,7 @@ export function Onboarding() {
             <input type="range" min={1500} max={4000} step={250} value={goalMl} onChange={(e) => setGoal(+e.target.value)} style={{ width: '100%' }} />
             <div className="small muted">Base europeia (EFSA): 2,0 L mulheres, 2,5 L homens, ajustada por peso e rotina. É sugestão, não prescrição.</div>
           </div>
-          <div className="field"><label>Tamanho do seu copo</label>
+          <div className="field"><label>Tamanho do seu copo (1 gole = 1 copo)</label>
             <div className="seg">{[200, 250, 300, 500].map((v) => <button key={v} className={glass === v ? 'on' : ''} onClick={() => setGlass(v)}>{v} ml</button>)}</div>
           </div>
           <div className="field"><label>Acordado das {awakeStart}h às {awakeEnd}h</label>
