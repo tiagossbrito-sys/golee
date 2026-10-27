@@ -72,9 +72,9 @@ export function Onboarding() {
             <div className="seg">{[200, 250, 300, 500].map((v) => <button key={v} className={glass === v ? 'on' : ''} onClick={() => setGlass(v)}>{v} ml</button>)}</div>
           </div>
           <div className="field"><label>Acordado das {awakeStart}h às {awakeEnd}h</label>
-            <div className="row">
-              <input type="range" min={4} max={12} value={awakeStart} onChange={(e) => setAwakeStart(Math.min(+e.target.value, awakeEnd - 4))} />
-              <input type="range" min={14} max={24} value={awakeEnd} onChange={(e) => setAwakeEnd(Math.max(+e.target.value, awakeStart + 4))} />
+            <div className="range-pair">
+              <div><div className="cap">Acordo às {awakeStart}h</div><input type="range" min={4} max={12} value={awakeStart} onChange={(e) => setAwakeStart(Math.min(+e.target.value, awakeEnd - 4))} aria-label="Hora de acordar" /></div>
+              <div><div className="cap">Durmo às {awakeEnd}h</div><input type="range" min={14} max={24} value={awakeEnd} onChange={(e) => setAwakeEnd(Math.max(+e.target.value, awakeStart + 4))} aria-label="Hora de dormir" /></div>
             </div>
           </div>
           <div className="card flat">

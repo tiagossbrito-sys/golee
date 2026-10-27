@@ -106,10 +106,10 @@ export function Grupo() {
     <div className="screen">
       <div className="row between">
         <h1>{group.emoji} {group.name}</h1>
-        {groups.length > 1 && <select value={group.id} onChange={(e) => setActiveGroup(e.target.value)} style={{ padding: 6, borderRadius: 10 }}>{groups.map((g) => <option key={g.id} value={g.id}>{g.emoji} {g.name}</option>)}</select>}
+        {groups.length > 1 && <select value={group.id} onChange={(e) => setActiveGroup(e.target.value)} style={{ padding: 6, borderRadius: 10, maxWidth: 140 }} aria-label="Trocar de grupo">{groups.map((g) => <option key={g.id} value={g.id}>{g.emoji} {g.name}</option>)}</select>}
       </div>
       {group.isDemo && <div className="chip warn" style={{ marginBottom: 8 }}>demonstração: Ana, Rafa, Ju e Caio são simulados</div>}
-      <div className="row" style={{ marginBottom: 12 }}>
+      <div className="row wrap" style={{ marginBottom: 12 }}>
         <button className="btn small" onClick={invite}>Convidar · {group.code}</button>
         <button className="btn secondary small" onClick={() => setShowSettings((v) => !v)}>Opções</button>
       </div>
