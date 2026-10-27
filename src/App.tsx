@@ -22,6 +22,8 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme === 'auto' ? '' : theme
+    const meta = document.querySelector('meta[name="theme-color"]')
+    if (meta) meta.setAttribute('content', theme === 'escuro' ? '#0f2233' : '#2f9be8')
     document.documentElement.dataset.motion = reduceMotion ? 'reduce' : ''
   }, [theme, reduceMotion])
 

@@ -17,9 +17,9 @@
   color-scheme: light;
 }
 :root[data-theme='escuro'] {
-  --bg: #0b1a24;
-  --surface: #122634;
-  --surface-2: #183344;
+  --bg: #0f2233;
+  --surface: #163449;
+  --surface-2: #1d4159;
   --text: #e8f3f9;
   --muted: #8fa9b8;
   --line: #22425a;
@@ -31,9 +31,9 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='claro']) {
-    --bg: #0b1a24;
-    --surface: #122634;
-    --surface-2: #183344;
+    --bg: #0f2233;
+    --surface: #163449;
+    --surface-2: #1d4159;
     --text: #e8f3f9;
     --muted: #8fa9b8;
     --line: #22425a;

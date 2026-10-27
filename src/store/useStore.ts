@@ -65,7 +65,7 @@ export const DEFAULT_SETTINGS: Settings = {
   tipsPerDay: 1,
   showLiters: true,
   showTimes: true,
-  theme: 'auto',
+  theme: 'claro',
   reduceMotion: false,
   unit: 'ml',
   weatherBoost: true,
@@ -267,7 +267,15 @@ export const useStore = create<GoleeState>()(
         location.reload()
       },
     }),
-    { name: 'golee', version: 1 },
+    {
+      name: 'golee',
+      version: 2,
+      migrate: (state, version) => {
+        const st = state as GoleeState
+        if (version < 2 && st?.settings?.theme === 'auto') st.settings = { ...st.settings, theme: 'claro' }
+        return st
+      },
+    },
   ),
 )
 
