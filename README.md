@@ -41,3 +41,13 @@ OUT=./shots node scripts/e2e.mjs
 - Dados vivem só no aparelho (localStorage). Grupos entre aparelhos diferentes, push com o app fechado e convite real exigem o backend.
 - `supabase/schema.sql` tem o esquema alvo (perfis, grupos, goles, ranking diário, RLS, assinaturas de push).
 - No iPhone, notificações só depois de "Adicionar à Tela de Início"; sem botão de ação na notificação.
+
+## Publicar
+
+Qualquer hospedagem estática com HTTPS serve. Três caminhos prontos:
+
+- **GitHub Pages**: suba o repositório, em Settings → Pages escolha "GitHub Actions" como fonte. O workflow em `.github/workflows/pages.yml` publica a cada push na `main`.
+- **Netlify**: importe o repositório; `netlify.toml` já define build e pasta. Ou arraste a pasta `dist` (build com `RELATIVE_BASE=1`) em app.netlify.com/drop.
+- **Vercel**: importe o repositório; `vercel.json` já define build e pasta.
+
+Depois aponte o domínio (golee.app) nas configurações da hospedagem. Com HTTPS e domínio próprio, o service worker, o manifest e a instalação como app passam a funcionar por completo.
